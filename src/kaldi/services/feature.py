@@ -4,7 +4,7 @@ from os.path import join as join_path, exists
 import re
 import numpy as np
 
-from kaldi.constants.main_constants import MFCC_DIR, VAD_DIR
+from kaldi.constants.main_constants import MFCC_DIR, VAD_DIR, MFCC_SCRIPT, VAD_SCRIPT
 from kaldi.services.common import load_array, run_parallel, save_array
 from kaldi.services.io import read_feat, read_vector
 from kaldi.services.run import Kaldi
@@ -60,7 +60,7 @@ class MFCC:
         return frame_dict
 
     def extract(self, data_scp):
-        return Kaldi().run_command('sh ./kaldi/make_mfcc.sh {} {}'.format(data_scp, self.params_file))
+        return Kaldi().run_command('sh {} {} {}'.format(MFCC_SCRIPT, data_scp, self.params_file))
 
     def run_vad_and_save(self, args):
         if not exists(args[4]):
@@ -100,7 +100,7 @@ class VAD:
         self.params_file = params_file
 
     def compute(self, feats_scp):
-        return Kaldi().run_command('sh ./kaldi/compute_vad.sh {} {}'.format(feats_scp, self.params_file))
+        return Kaldi().run_command('sh {} {} {}'.format(VAD_SCRIPT, feats_scp, self.params_file))
 
 
 def cmvn(x, var_norm=True):
