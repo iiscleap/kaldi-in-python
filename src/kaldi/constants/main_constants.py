@@ -1,7 +1,7 @@
 from os.path import join as join_path
 
 
-KALDI_PATH_FILE = './kaldi/scripts/path.sh'
+KALDI_PATH_FILE = './scripts/path.sh'
 
 DATA_DIR = 'data'
 MFCC_DIR = 'mfcc'

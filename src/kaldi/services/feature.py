@@ -6,7 +6,7 @@ import numpy as np
 
 from kaldi.constants.main_constants import MFCC_DIR, VAD_DIR, MFCC_SCRIPT, VAD_SCRIPT
 from kaldi.services.common import load_array, run_parallel, save_array
-from kaldi.services.io import read_feat, read_vector
+from kaldi.services.io import read_feat, read_vectors
 from kaldi.services.run import Kaldi
 
 
@@ -70,7 +70,7 @@ class MFCC:
 
             with open(args[3], 'w') as f:
                 f.write('{} {}'.format(args[0], args[2]))
-            vad = read_vector(args[3])
+            vad = read_vectors(args[3])
 
             remove_file(args[3])
             features = features[:, vad]
