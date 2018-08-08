@@ -70,7 +70,7 @@ class MFCC:
 
             with open(args[3], 'w') as f:
                 f.write('{} {}'.format(args[0], args[2]))
-            vad = read_vectors(args[3])
+            _, vad = read_vectors(args[3])
 
             remove_file(args[3])
             features = features[:, vad]
